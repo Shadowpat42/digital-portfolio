@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    font-family: 'TT Travels Trl';
+    font-weight: 600;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    background-image: url("/static/elements/фон основной.png");
+    background-repeat: no-repeat;
+    background-position: left 17vh;
+    background-size: 100%  75vh;
+}
+
+header {
+    width: 100%;
+    height: 20vh;
+    background-image: url("../elements/Фон шапки.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h1 {
+    padding: 0;
+    margin-top: 2vh;
+    align-self: center;
+}
+
+header ul {
+    padding: 0;
+    align-self: 600px;
+    margin-top: 6vh;
+}
+
+footer {
+    position: absolute;
+	left: 0;
+	bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-image: url("../elements/Фон футер.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% 100%;
+}
+
+.educator-block {
+    background-color: #F1F1F1;
+    width: 904px;
+    height: 486px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 1.5vh;
+    border-radius: 50px;
+    border: 5px solid #E5EC90;
+
+}
+
+
+.quote1 {
+    font-family: 'TT Travels Trl';
+    font-weight: 800;
+    text-shadow: 6px 7px 3.7px #45454540;
+    text-align: right;
+    padding-right: 250px;
+}
+
+.quote2 {
+    font-family: 'TT Travels Trl';
+    font-weight: 800;
+    text-shadow: 6px 7px 3.7px #45454540;
+    text-align: right;
+    padding-right: 50px;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 600;
+    padding-top: 30px;
+    padding-right: 100px;
+    text-align: right;
+    margin: 0;
+}
+
+.city {
+    text-align: right;
+    margin: 0;
+    padding-right: 80px;
+}
+
+.inf-and-photo {
+    display: flex;
+    gap: 30px;
+}
+h1 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 76.78px;
+}
+
+.quality-item {
+    padding-bottom: 10px;
+}
+
+.social-media {
+    padding: 0%;
+    width: 410px;
+    height: 50px;
+    list-style-type: none;
+    display: flex;
+    gap: 80px;
+    margin-top: 3vh;
+    margin-left: 140vh;
+}
+
+.social-media-item {
+    align-items: center;
+    margin-top: 1vh;
+}
+
+h3 {
+    font-size: 30px;
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+
+.navigation {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.educator {
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.nav-item a {
+    font-size: 13px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-item {
+    width: 149px;
+    height: 64.57px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.city {
+    font-weight: 400;
+}
+
+.quote {
+    font-weight: 800;
+    font-style: normal;
+}

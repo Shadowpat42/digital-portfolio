@@ -1,0 +1,185 @@
+body {
+    margin: 0;
+    font-family: 'TT Travels Trl';
+    font-weight: 600;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: left 17vh;
+    background-size: 100% 75vh;
+}
+
+
+h1 {
+    padding: 0;
+    margin-top: 2vh;
+    align-self: center;
+}
+
+header ul {
+    padding: 0;
+    align-self: 600px;
+    margin-top: 6vh;
+}
+
+
+.reaction {
+    margin: 0;
+    width: 200px;
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+    position: relative;
+    right: -73vh;
+    bottom: 3vh;
+}
+
+.reaction-item {
+    height: 40px;
+}
+
+.social-media {
+    padding: 0%;
+    width: 410px;
+    height: 50px;
+    list-style-type: none;
+    display: flex;
+    gap: 80px;
+    margin-top: 3vh;
+    margin-left: 140vh;
+}
+
+.social-media-item {
+    align-items: center;
+    margin-top: 1vh;
+}
+
+h1 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 76.78px;
+}
+
+h2 {
+    text-shadow: 3px 4px 0px #71707040;
+    position: relative;
+    font-weight: 500;
+    font-style: normal; /* поменять стиль*/
+    font-size: 38px;
+    line-height: 69.58px;
+    text-align: center;
+    margin: 0;
+    top: -30px;
+    margin-left: 150px;
+}
+
+.block {
+    background-color: #F1F1F1;
+    width: 804px;
+    height: auto;
+    position: absolute;
+    margin: 0 auto;
+    border-radius: 30px;
+    border: 1px solid black;
+    top: -40px;
+    margin-left: 80px;
+    overflow: hidden;
+}
+
+
+.mero {
+    display: block;
+    color: black;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-radius: 20px;
+    width: 80%;
+    height: 70%;
+}
+
+.date-block {
+    height: 20px;
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    padding-left: 87px;
+    align-self: start;
+
+}
+
+h3 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 43.19px;
+    padding-left: 87px;
+    padding-top: 5px;;
+}
+
+
+.navigation {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item a {
+    font-size: 13px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-item {
+    width: 149px;
+    height: 64.57px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    display: block;
+    position: relative;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 19.2px;
+    text-decoration: none;
+    color: black;
+    top: -15px;
+    margin-top: 18px;
+    margin-left: -50px;
+}
+
+.children {
+    display: block;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 23.99px;
+    top: -10px;
+    padding-left: 85px;
+    overflow: hidden;
+}
+
+p {
+    margin-left: 50px;
+}
+
+.container {
+    margin-left: 300px;
+}
+
+button {
+    position: relative;
+    z-index: 9999;
+}
+
+
