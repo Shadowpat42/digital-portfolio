@@ -9,6 +9,7 @@ from django.db import models
 from django.utils import timezone
 from django.db.models import Manager
 
+
 class CustomUserManager(BaseUserManager):
     """
     Менеджер пользователей, расширяющий BaseUserManager Django.
@@ -88,6 +89,18 @@ class MethodologicalResource(models.Model):
         return self.title
 
 
+class Media(models.Model):
+    title = models.CharField(max_length=200)
+    file = models.FileField(upload_to="video_and_image")
+    media_type = models.CharField(
+        max_length=10, choices=[("photo", "Photo"), ("video", "Video")]
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Reaction(models.Model):
     LIKE = "like"
     DISLIKE = "dislike"
@@ -103,11 +116,13 @@ class Reaction(models.Model):
     ]
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    media = models.ForeignKey(Media, on_delete=models.SET_NULL, null=True, blank=True)  # Поле необязательно
+    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, blank=True)  # Поле необязательно
     reaction_type = models.CharField(max_length=20, choices=REACTION_CHOICES)
 
     class Meta:
-        unique_together = ('user', 'post', 'reaction_type')
+        unique_together = ("user", "media", "post", "reaction_type")
 
     def __str__(self):
-        return f"{self.user} - {self.reaction_type} - {self.post}"
+        return f"{self.user} - {self.reaction_type} - {self.media} - {self.post}"
+

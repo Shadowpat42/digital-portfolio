@@ -13,4 +13,6 @@ urlpatterns = [
     path("user/<int:user_id>", views.user, name="user"),
     path('react_to_post/<int:post_id>/', views.react_to_post, name='react_to_post'),
     path("reward", views.reward, name="reward"),
+    path("media", views.media_list, name="media"),
+    path('react_to_media/<int:media_id>/', views.react_to_media, name='react_to_media'),
 ]

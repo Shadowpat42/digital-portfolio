@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, Media
 
 
 class SignUpForm(forms.ModelForm):
@@ -34,3 +34,9 @@ class SignUpForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class MediaForm(forms.ModelForm):
+    class Meta:
+        model = Media
+        fields = ["title", "file", "media_type"]
