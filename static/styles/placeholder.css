@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+    font-family: 'TT Travels Trl';
+    font-weight: 600;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../elements/фон основной.png");
+    background-repeat: no-repeat;
+    background-position: left 17vh;
+    background-size: 100%  75vh;
+}
+
+header {
+    width: 100%;
+    height: 20vh;
+    background-image: url("../elements/Фон шапки.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h1 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 76.78px;
+}
+
+header ul {
+    padding: 0;
+    align-self: bottom;
+    margin-top: 6vh;
+}
+
+footer {
+    position: absolute;
+	left: 0;
+	bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-image: url("../elements/Фон футер.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% 100%;
+}
+
+.navigation {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    width: 149px;
+    height: 64.57px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item a {
+    font-size: 13px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.social-media {
+    padding: 0%;
+    width: 410px;
+    height: 50px;
+    list-style-type: none;
+    display: flex;
+    gap: 80px;
+    margin-top: 3vh;
+    margin-left: 140vh;
+}
+
+
+/*Общее для трех*/
+.general-title{
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 30px;    
+}
+
+
+/*стайл для методической копилки*/
+
+.method-box{
+    text-align: center;
+    margin: 0 21%;
+    font-weight: 400;
+}
+
+.method-sort{       
+    margin-top: 20px;
+    height: 39px;
+    white-space: nowrap;
+    margin-bottom: 14px;
+}
+
+.method-sort-content{
+    border: 1px solid black;
+    display: flex;
+    align-items:center;
+    float: left;
+    padding: 7px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.sort-item{
+    padding-left: 10px;
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+.sort-item > a{
+    text-decoration: none;
+    color: black;
+}
+
+.sort-bold{
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.method-files-item{
+    background-color: #F0F0F0;
+    border: 1px solid black;
+    height: 90px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+} 
+
+.files-item-doc{
+    display: flex;
+    align-items:center;
+    padding-left: 50px;
+}
+
+.files-item-doc a{
+    text-decoration: none;
+    color: black;
+}
+
+.files-item-title{
+    font-size: 30px;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 50px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+}
+
+.files-img, .files-link{
+    color: black;
+}
+
+/*стайл для конкурсов и наград*/
+
+.reward-content{
+    width: 700px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin: auto;
+}
+
+.reward-title{
+    margin-bottom: 20px;
+}
+
+.reward-message{
+    display: flex;
+    flex-direction: row;
+    background-color: #F0F0F0;
+    align-items:center;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 30px;
+}
+
+.reward-message-item {
+    margin: 20px;
+    padding-left: 20px;
+}
+
+.reward-message-item > img{
+    height: 400px;
+}
+
+/*стайл для фото и видео*/
+
+.videophoto-content{
+    width: 700px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin: auto;
+}
+
+.videophoto-title{
+    margin-bottom: 20px;
+}
+
+.videophoto-item > img{
+    height: 350px;
+    margin-top: 30PX;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.videophoto-block{
+    background-color: #F0F0F0;
+    align-items:center;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 30px;
+}
+
+.videophoto-ref{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    float: inline-end;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.videophoto-button{
+    padding-right: 30px;
+}
+.videophoto-button img{
+    height: 25px;
+}
+
+.videophoto-ref .first img{
+    height: 30px;
+}
