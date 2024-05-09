@@ -78,11 +78,11 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "django",
-        "USER": "django_admin",
-        "PASSWORD": "89630385851",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": "railway",
+        "USER": "postgres",
+        "PASSWORD": "ntuQAgJWKnKdGZJENTXYRfJQMqcdnRME",
+        "HOST": "roundhouse.proxy.rlwy.net",
+        "PORT": "55454",
     }
 }
 
