@@ -1,0 +1,40 @@
+{% extends 'base_new.html' %}
+
+{% block content %}
+    <link href="https://fonts.cdnfonts.com/css/tt-travels-trl?styles=151876,151875,151865,151866,151863,151864,151867,151868"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../../static/styles/styleSecondWindow.css">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Hello, {{ user.first_name }} {{ user.last_name }}</h3>
+                    <h4>Your information:</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Personal ID:</strong> {{ user.id }}</li>
+                        <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
+                        <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Your reactions:</h4>
+                    <ul class="list-group list-group-flush">
+                        {% for reaction in reactions %}
+                            <li class="list-group-item">{{ reaction.reaction_type }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base_new.html' %}
+
+{% block content %}
+    <link href="https://fonts.cdnfonts.com/css/tt-travels-trl?styles=151876,151875,151865,151866,151863,151864,151867,151868"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../../static/styles/styleSecondWindow.css">
+    <div class="container"><br>
+        <h2 class="text-center" style="margin-left: -300px">Методическая копилка</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="sort_by" value="date" class="btn btn-primary mb-3">Сортировать по дате</button>
+                </form>
+                <div class="list-group">
+                    {% for resource in methodological_resources %}
+                        <a href="{{ resource.file.url }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ resource.title }}</h5>
+                            </div>
+                            <small class="mb-1">{{ resource.file }}</small>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

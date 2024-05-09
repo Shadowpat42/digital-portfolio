@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="post-container oval-container">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image d-block mx-auto"><br><br>
+                    <strong><h3>{{ post.title }}</h3></strong>
+                    <p>{{ post.content|linebreaks }}</p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Ваш комментарий</label>
+                            <textarea class="form-control" id="comment" rows="3" placeholder="Напишите комментарий!"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

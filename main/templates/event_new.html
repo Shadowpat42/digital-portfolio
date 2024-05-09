@@ -1,0 +1,93 @@
+{% extends 'base_new.html' %}
+
+{% block content %}
+    <style>
+        .container {
+            margin-left: 300px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .post-container {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .oval-container {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+    <h2 class="text-center">Мероприятия и праздники</h2><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if posts %}
+                    <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for post in posts %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="post-container oval-container">
+                                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image d-block mx-auto"><br><br>
+                                        <strong><h3>"{{ post.title }}"</h3></strong>
+                                        <p>{{ post.content|linebreaks }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if posts|length > 1 %}
+                            <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#postCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p>Нет доступных постов.</p>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <!-- Кнопка переключения на следующий пост -->
+                <button class="btn btn-primary" id="nextPostBtn">Следующий пост</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Индекс текущего поста
+        let currentIndex = 0;
+
+        // Получаем кнопку для переключения на следующий пост
+        const nextPostBtn = document.getElementById('nextPostBtn');
+
+        // При клике на кнопку переключаемся на следующий пост
+        nextPostBtn.addEventListener('click', function() {
+            const carousel = document.getElementById('postCarousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+
+            // Скрываем текущий пост
+            items[currentIndex].classList.remove('active');
+
+            // Увеличиваем индекс и переходим к следующему посту
+            currentIndex = (currentIndex + 1) % items.length;
+
+            // Показываем следующий пост
+            items[currentIndex].classList.add('active');
+        });
+    </script>
+{% endblock %}
