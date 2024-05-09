@@ -4,8 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login as auth_login, authenticate
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.db.models import Count, Q
-from .forms import SignUpForm, LoginForm, MediaForm
+from .forms import SignUpForm, LoginForm
 
 from .models import CustomUser, Post, MethodologicalResource, Reaction, Media
 
@@ -14,6 +13,7 @@ def index(request):
     return render(request, "about.html")
 
 
+# не используется
 @csrf_exempt
 def user_create(request):
     if request.method == "POST":
@@ -161,6 +161,7 @@ def media_list(request):
     return render(request, "media.html", {"media_files": media_files})
 
 
+# не используется
 def react_to_media(request, media_id):
     if request.method == "POST":
         media = get_object_or_404(Media, pk=media_id)

@@ -7,7 +7,6 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.utils import timezone
-from django.db.models import Manager
 
 
 class CustomUserManager(BaseUserManager):
@@ -116,8 +115,12 @@ class Reaction(models.Model):
     ]
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    media = models.ForeignKey(Media, on_delete=models.SET_NULL, null=True, blank=True)  # Поле необязательно
-    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, blank=True)  # Поле необязательно
+    media = models.ForeignKey(
+        Media, on_delete=models.SET_NULL, null=True, blank=True
+    )  # Поле необязательно
+    post = models.ForeignKey(
+        Post, on_delete=models.SET_NULL, null=True, blank=True
+    )  # Поле необязательно
     reaction_type = models.CharField(max_length=20, choices=REACTION_CHOICES)
 
     class Meta:
@@ -125,4 +128,3 @@ class Reaction(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.reaction_type} - {self.media} - {self.post}"
-
