@@ -149,3 +149,7 @@ def react_to_post(request, post_id):
         else:
             return JsonResponse({"error": "Invalid reaction type"}, status=400)
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+def reward(request):
+    return render(request, "reward.html")
