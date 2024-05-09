@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'styles/placeholder.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../static/styles/styleSecondWindow.css">
+    <main>
+        <div class="videophoto-box">
+            <div class="videophoto-content">
+                <div class="videophoto-title general-title">Фото и видео</div>
+                <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for media in media_files %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="videophoto-block" style="height: 450px">
+                                    <div class="videophoto-item">
+                                        {% if media.media_type == 'photo' %}
+                                            <img src="{{ media.file.url }}" alt="{{ media.title }}"><br><br>
+                                        {% elif media.media_type == 'video' %}<br>
+                                            <video width="90%" style="margin-left: 33px;" controls>
+                                                <source src="{{ media.file.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        {% endif %}
+                                        <div class="videophoto-item videophoto-ref d-flex justify-content-between align-items-center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if media_files|length > 1 %}
+                        <button class="carousel-control-next" type="button" data-bs-target="#postCarousel"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Индекс текущего медиафайла
+        let currentIndex = 0;
+
+        // Получаем кнопки управления каруселью
+        const carouselPrevBtn = document.querySelector('[data-bs-slide="prev"]');
+        const carouselNextBtn = document.querySelector('[data-bs-slide="next"]');
+
+        // При клике на кнопку переключаемся на следующий медиафайл
+        carouselNextBtn.addEventListener('click', function () {
+            const items = document.querySelectorAll('.carousel-inner .carousel-item');
+
+            // Скрываем текущий медиафайл
+            items[currentIndex].classList.remove('active');
+
+            // Увеличиваем индекс и переходим к следующему медиафайлу
+            currentIndex = (currentIndex + 1) % items.length;
+
+            // Показываем следующий медиафайл
+            items[currentIndex].classList.add('active');
+        });
+
+        // При клике на кнопку переключаемся на предыдущий медиафайл (необязательно)
+        carouselPrevBtn.addEventListener('click', function () {
+            const items = document.querySelectorAll('.carousel-inner .carousel-item');
+
+            // Скрываем текущий медиафайл
+            items[currentIndex].classList.remove('active');
+
+            // Уменьшаем индекс и переходим к предыдущему медиафайлу
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+
+            // Показываем предыдущий медиафайл
+            items[currentIndex].classList.add('active');
+        });
+    </script>
+{% endblock %}
