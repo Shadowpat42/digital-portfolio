@@ -22,19 +22,5 @@
         </div>
     </div>
 
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Your reactions:</h4>
-                    <ul class="list-group list-group-flush">
-                        {% for reaction in reactions %}
-                            <li class="list-group-item">{{ reaction.reaction_type }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    
 {% endblock %}

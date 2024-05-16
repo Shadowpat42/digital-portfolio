@@ -69,6 +69,7 @@ def event(request):
     )
 
 
+@csrf_exempt
 def methodological_resources(request):
     if request.method == "POST":
         sort_by = request.POST.get("sort_by")
@@ -85,6 +86,7 @@ def methodological_resources(request):
     )
 
 
+@csrf_exempt
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -102,6 +104,7 @@ def signup(request):
     return render(request, "signup.html", {"form": form})
 
 
+@csrf_exempt
 def login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -128,6 +131,7 @@ def user(request, user_id):
     return render(request, "get_user.html", {"user": user, "reactions": reactions})
 
 
+@csrf_exempt
 def react_to_post(request, post_id):
     if request.method == "POST":
         post = get_object_or_404(Post, pk=post_id)
@@ -139,9 +143,8 @@ def react_to_post(request, post_id):
 
             if existing_reaction:
                 existing_reaction.delete()
-                return JsonResponse(
-                    {"error": f"{reaction_type.capitalize()} reaction removed"}
-                )
+                return redirect("event")
+
             else:
                 new_reaction = Reaction.objects.create(
                     user=request.user, post=post, reaction_type=reaction_type
