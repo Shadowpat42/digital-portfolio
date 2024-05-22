@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser, Media
+from .models import CustomUser, Media, Comment
 
 
 class SignUpForm(forms.ModelForm):
@@ -40,3 +40,9 @@ class MediaForm(forms.ModelForm):
     class Meta:
         model = Media
         fields = ["title", "file", "media_type"]
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["content"]

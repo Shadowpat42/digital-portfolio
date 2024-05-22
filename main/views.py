@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login as auth_login, authenticate
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, CommentForm
 
 from .models import CustomUser, Post, MethodologicalResource, Reaction, Media
 
@@ -48,7 +48,18 @@ def user_create(request):
 
 def get_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    return render(request, "get_post.html", {"post": post})
+    comments = post.comments.all()
+    form = CommentForm()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+            return redirect("get_post", post_id=post_id)
+
+    return render(request, "get_post.html", {"post": post, "comments": comments, "form": form})
 
 
 def event(request):
