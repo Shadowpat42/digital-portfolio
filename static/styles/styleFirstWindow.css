@@ -165,3 +165,11 @@ h3 {
     font-weight: 800;
     font-style: normal;
 }
+
+.nav-item:hover {
+background-color: rgb(205, 205, 205);
+}
+
+.nav-item:active {
+    background-color: rgb(145, 144, 144);
+}
