@@ -1,6 +1,7 @@
 import json
 from http import HTTPStatus
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.auth import login as auth_login, authenticate
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -54,12 +55,23 @@ def get_post(request, post_id):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.user = request.user
-            comment.post = post
-            comment.save()
-            return redirect("get_post", post_id=post_id)
-
-    return render(request, "get_post.html", {"post": post, "comments": comments, "form": form})
+            if (
+                request.user.is_authenticated
+            ):  # Проверяем, аутентифицирован ли пользователь
+                comment.user = request.user
+                comment.post = post
+                comment.save()
+                return redirect("get_post", post_id=post_id)
+            else:
+                messages.warning(
+                    request, "Пожалуйста, авторизуйтесь, чтобы оставить комментарий."
+                )
+                return redirect(
+                    "login"
+                )  # Перенаправляем на страницу входа, если пользователь не авторизован
+    return render(
+        request, "get_post.html", {"post": post, "comments": comments, "form": form}
+    )
 
 
 def event(request):
@@ -145,25 +157,32 @@ def user(request, user_id):
 @csrf_exempt
 def react_to_post(request, post_id):
     if request.method == "POST":
-        post = get_object_or_404(Post, pk=post_id)
-        reaction_type = request.POST.get("reaction_type")
-        if reaction_type in ["like", "dislike", "heart", "fire"]:
-            existing_reaction = Reaction.objects.filter(
-                user=request.user, post=post, reaction_type=reaction_type
-            ).first()
-
-            if existing_reaction:
-                existing_reaction.delete()
-                return redirect("event")
-
-            else:
-                new_reaction = Reaction.objects.create(
+        if request.user.is_authenticated:  # Проверяем, аутентифицирован ли пользователь
+            post = get_object_or_404(Post, pk=post_id)
+            reaction_type = request.POST.get("reaction_type")
+            if reaction_type in ["like", "dislike", "heart", "fire"]:
+                existing_reaction = Reaction.objects.filter(
                     user=request.user, post=post, reaction_type=reaction_type
-                )
-                return redirect("event")
+                ).first()
+
+                if existing_reaction:
+                    existing_reaction.delete()
+                else:
+                    new_reaction = Reaction.objects.create(
+                        user=request.user, post=post, reaction_type=reaction_type
+                    )
+            else:
+                return JsonResponse({"error": "Invalid reaction type"}, status=400)
         else:
-            return JsonResponse({"error": "Invalid reaction type"}, status=400)
-    return JsonResponse({"error": "Invalid request method"}, status=405)
+            messages.warning(
+                request, "Пожалуйста, авторизуйтесь, чтобы добавить реакцию."
+            )
+            return redirect(
+                "login"
+            )  # Перенаправляем на страницу входа, если пользователь не авторизован
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
+    return redirect("event")
 
 
 def reward(request):
