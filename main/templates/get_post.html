@@ -1,19 +1,21 @@
-
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <div class="post-container oval-container">
-                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image d-block mx-auto"><br><br>
+                    <img style="width: 60%; height: 60%;" src="{{ post.image.url }}" alt="{{ post.title }}"
+                         class="post-image d-block mx-auto"><br><br>
                     <strong><h3>{{ post.title }}</h3></strong>
                     <p>{{ post.content|linebreaks }}</p>
 
                     <!-- Отображение комментариев -->
                     <div class="comments">
                         {% for comment in comments %}
-                            <p><strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong>: {{ comment.content }}</p>
+                            <p><strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong>:</p>
+                            <pre>{{ comment.content }}</pre>
                         {% endfor %}
                     </div>
+
 
                     <!-- Форма для добавления комментария -->
                     <form method="post">

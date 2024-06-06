@@ -33,13 +33,13 @@
                                  data-post-id="{{ post.id }}">
                                 <div class="block post-container oval-container">
                                     <img src="{{ post.image.url }}" alt="{{ post.title }}" class="mero"><br><br>
-                                    <h3>“{{ post.title }}“</h3>
+                                    <h3><a style="color: black; text-decoration: none" href="{% url 'get_post' post.id %}">“{{ post.title }}“</a></h3>
                                     <div class="date-block">
                                         <img src="../../static/elements/Иконка.svg" alt="calendar">
                                         <p><a href="date:{{ post.created_at }}" class="date">{{ post.created_at }}</a>
                                         </p>
                                     </div>
-                                    <p class="children">{{ post.content|linebreaks }}</p>
+                                    <p class="children">{{ post.content|linebreaks }}</p><br>
                                     <ul class="reaction">
                                         <li class="reaction-item">
                                             <form id="likeForm{{ post.id }}" action="{% url 'react_to_post' post.id %}"
@@ -63,7 +63,7 @@
                                                 {% csrf_token %}
                                                 <input type="hidden" name="reaction_type" value="dislike">
                                                 <button type="submit">
-                                                    <img src="../../static/elements/Дизлайк.svg" alt="dislike"
+                                                    <img src="../../static/elements/дизлайк.svg" alt="dislike"
                                                          width="25"
                                                          height="25">
                                                 </button>
