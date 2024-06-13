@@ -1,30 +1,70 @@
+{% extends 'base.html' %}
+
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="post-container oval-container">
-                    <img style="width: 60%; height: 60%;" src="{{ post.image.url }}" alt="{{ post.title }}"
-                         class="post-image d-block mx-auto"><br><br>
-                    <strong><h3>{{ post.title }}</h3></strong>
-                    <p>{{ post.content|linebreaks }}</p>
-
-                    <!-- Отображение комментариев -->
-                    <div class="comments">
-                        {% for comment in comments %}
-                            <p><strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong>:</p>
-                            <pre>{{ comment.content }}</pre>
-                        {% endfor %}
+<head>
+    <link href="https://fonts.cdnfonts.com/css/tt-travels-trl?styles=151876,151875,151865,151866,151863,151864,151867,151868" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/styles/comments.css">
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<main>
+    <div class="coments-field">
+        <div class="coments-header">
+            <p>Комментарии</p>
+            <img src="../../static/elements/CloseButton.png" width="31px" height="30px" alt="Close Button">
+        </div>
+        <div class="coments-main">
+            <div id="comments-list">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p><strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong>:</p>
+                        <p>{{ comment.content }}</p>
                     </div>
-
-
-                    <!-- Форма для добавления комментария -->
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Отправить</button>
-                    </form>
-                </div>
+                {% endfor %}
             </div>
         </div>
+        <div class="coments-footer">
+            <div class="coments-box">
+                <input type="text" id="yourComment" placeholder="Ваш комментарий">
+            </div>
+            <img id="inputBtn" onclick="enterMsg()" src="../../static/elements/EnterButton.png" width="31px" height="30px" alt="Enter Button">
+        </div>
     </div>
+    <form method="post" id="comment-form" action="{% url 'get_post' post.id %}" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" name="content" id="hidden-comment-content">
+    </form>
+    <script>
+        function enterMsg() {
+            const input = document.getElementById("yourComment");
+            if (input.value.trim().length !== 0) {
+                // Создаем новый элемент комментария
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment');
+                const userName = '{{ user.first_name }} {{ user.last_name }}';  // Имя текущего пользователя
+                newComment.innerHTML = `<p><strong>${userName}</strong>:</p><p>${input.value}</p>`;
+
+                // Добавляем новый комментарий в список комментариев
+                document.getElementById('comments-list').appendChild(newComment);
+
+                // Очищаем поле ввода
+                const commentContent = input.value;
+                input.value = '';
+
+                // Отправляем комментарий на сервер
+                const hiddenCommentContent = document.getElementById('hidden-comment-content');
+                hiddenCommentContent.value = commentContent;
+                document.getElementById('comment-form').submit();
+            }
+        }
+
+        // Добавляем обработчик события для клавиши "Enter"
+        document.getElementById('yourComment').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Предотвращаем стандартное действие (отправку формы)
+                enterMsg(); // Вызываем функцию отправки комментария
+            }
+        });
+    </script>
+</main>
 {% endblock %}
