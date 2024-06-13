@@ -11,7 +11,7 @@
     <div class="coments-field">
         <div class="coments-header">
             <p>Комментарии</p>
-            <img src="../../static/elements/CloseButton.png" width="31px" height="30px" alt="Close Button">
+            <img src="../../static/elements/CloseButton.png" width="31px" height="30px" alt="Close Button" onclick="closeComments()">
         </div>
         <div class="coments-main">
             <div id="comments-list">
@@ -65,6 +65,11 @@
                 enterMsg(); // Вызываем функцию отправки комментария
             }
         });
+
+        // Добавляем обработчик события для кнопки закрытия
+        function closeComments() {
+            window.location.href = "{% url 'get_post' post.id %}";
+        }
     </script>
 </main>
 {% endblock %}

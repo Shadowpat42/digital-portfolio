@@ -56,7 +56,7 @@ body {
 }
 
 .coments-main {
-    padding: 10 px;
+    padding-left: 15px;
     height: 359px;
     width: 860px;
     overflow-y: scroll;
